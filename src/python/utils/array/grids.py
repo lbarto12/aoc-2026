@@ -1,4 +1,4 @@
-from collections.abc import Generator, Sequence
+from collections.abc import Generator, Iterable, Sequence
 
 from src.python.utils.tuples.transform import t_add
 
@@ -29,12 +29,12 @@ def setxy[T](arr: list[list[T]], pos: tuple[int, int], val: T):
 
 
 def count_adjacent[T](
-    arr: list[list[T]], pos: tuple[int, int], targets: list[T]
+    arr: list[list[T]], pos: tuple[int, int], targets: Iterable[T]
 ) -> int:
     return sum(arr[y][x] in targets for x, y in adjacent(pos))
 
 
 def count_adjacent4[T](
-    arr: list[list[T]], pos: tuple[int, int], targets: list[T]
+    arr: list[list[T]], pos: tuple[int, int], targets: Iterable[T]
 ) -> int:
     return sum(arr[y][x] in targets for x, y in adjacent4(pos))
