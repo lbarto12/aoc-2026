@@ -3,12 +3,12 @@ from collections.abc import Generator, Sequence
 from src.python.utils.tuples.transform import t_add
 
 
-def adjacent(x: int, y: int) -> Generator[tuple[int, int]]:
+def adjacent(pos: tuple[int, int]) -> Generator[tuple[int, int]]:
     for i in range(-1, 2):
         for j in range(-1, 2):
             if (i, j) == (0, 0):
                 continue
-            yield (x + j, y + i)
+            yield (pos[0] + j, pos[1] + i)
 
 
 def adjacent4(p: tuple[int, int]) -> Generator[tuple[int, int]]:
@@ -26,3 +26,15 @@ def getxy[T](arr: Sequence[Sequence[T]], pos: tuple[int, int]) -> T:
 
 def setxy[T](arr: list[list[T]], pos: tuple[int, int], val: T):
     arr[pos[1]][pos[0]] = val
+
+
+def count_adjacent[T](
+    arr: list[list[T]], pos: tuple[int, int], targets: list[T]
+) -> int:
+    return sum(arr[y][x] in targets for x, y in adjacent(pos))
+
+
+def count_adjacent4[T](
+    arr: list[list[T]], pos: tuple[int, int], targets: list[T]
+) -> int:
+    return sum(arr[y][x] in targets for x, y in adjacent4(pos))

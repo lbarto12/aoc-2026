@@ -27,6 +27,8 @@ EOF
 done
 
 touch src/python/days/day_$1/load.py
+touch src/python/days/day_$1/common.py
+touch src/python/days/day_$1/types.py
 
 cat << EOF > src/python/days/day_$1/load.py
 def load(path: str) -> list[str]:
