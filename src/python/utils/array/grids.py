@@ -1,7 +1,7 @@
 from collections.abc import Generator, Iterable, Sequence
 
-from src.python.utils.tuples.transform import t_add
-from src.python.utils.types import P2D
+from python.utils.tuples.transform import t_add
+from python.utils.types import P2D
 
 
 def adjacent(pos: P2D) -> Generator[tuple[int, int]]:
