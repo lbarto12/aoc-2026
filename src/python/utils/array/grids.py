@@ -1,8 +1,6 @@
 from collections.abc import Generator, Sequence
 
-
-def t_add[T: (int, float)](a: tuple[T, T], b: tuple[T, T]) -> tuple[T, T]:
-    return a[0] + b[0], a[1] + b[1]
+from src.python.utils.tuples.transform import t_add
 
 
 def adjacent(x: int, y: int) -> Generator[tuple[int, int]]:
