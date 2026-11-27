@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+    echo "usage: new <quest>" >&2
+    exit 1
+fi
+
+mkdir src/python/quests/quest_$1
+
+for i in {1..3}
+do
+    mkdir src/python/quests/quest_$1/p$i
+    touch src/python/quests/quest_$1/p$i/main.py
+    touch src/python/quests/quest_$1/p$i/in.txt
+    cat << EOF > src/python/quests/quest_$1/p$i/main.py
+from ..load import load
+
+
+def solve(data) -> int:
+    return 0
+
+
+if __name__ == "__main__":
+    print(solve(load("src/python/quests/quest_$1/p$i/in.txt")))
+EOF
+done
+
+touch src/python/quests/quest_$1/load.py
+
+cat << EOF > src/python/quests/quest_$1/load.py
+def load(path: str) -> list[str]:
+    with open(path) as file:
+        return file.readlines()
+EOF

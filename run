@@ -7,4 +7,5 @@ if [[ $# -ne 2 ]]; then
 fi
 
 cd "$(dirname "$0")"
+echo "running src.python.quests.quest_$1.p$2.main"
 exec uv run python -m "src.python.quests.quest_$1.p$2.main"
