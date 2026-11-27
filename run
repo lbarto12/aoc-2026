@@ -2,10 +2,10 @@
 set -euo pipefail
 
 if [[ $# -ne 2 ]]; then
-    echo "usage: run <quest> <part>" >&2
+    echo "usage: run <day> <part>" >&2
     exit 1
 fi
 
 cd "$(dirname "$0")"
-echo "running src.python.quests.quest_$1.p$2.main"
-exec uv run python -m "src.python.quests.quest_$1.p$2.main"
+echo "running src.python.days.day_$1.p$2.main"
+exec uv run python -m "src.python.days.day_$1.p$2.main"
