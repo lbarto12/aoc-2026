@@ -1,7 +1,7 @@
-from collections.abc import Generator, Iterable, Sequence
+from collections.abc import Generator, Iterable
 
 from python.utils.tuples.transform import t_add
-from python.utils.types import P2D
+from python.utils.types import P2D, Grid
 
 
 def adjacent(pos: P2D) -> Generator[tuple[int, int]]:
@@ -17,21 +17,21 @@ def adjacent4(p: P2D) -> Generator[P2D]:
         yield t_add(p, o)
 
 
-def in_bounds[T](data: list[list[T]], p: P2D) -> bool:
+def in_bounds[T](data: Grid[T], p: P2D) -> bool:
     return 0 <= p[0] < len(data[0]) and 0 <= p[1] < len(data)
 
 
-def getxy[T](arr: Sequence[Sequence[T]], pos: P2D) -> T:
+def getxy[T](arr: Grid[T], pos: P2D) -> T:
     return arr[pos[1]][pos[0]]
 
 
-def setxy[T](arr: list[list[T]], pos: P2D, val: T):
+def setxy[T](arr: Grid[T], pos: P2D, val: T):
     arr[pos[1]][pos[0]] = val
 
 
-def count_adjacent[T](arr: list[list[T]], pos: P2D, targets: Iterable[T]) -> int:
+def count_adjacent[T](arr: Grid[T], pos: P2D, targets: Iterable[T]) -> int:
     return sum(arr[y][x] in targets for x, y in adjacent(pos))
 
 
-def count_adjacent4[T](arr: list[list[T]], pos: P2D, targets: Iterable[T]) -> int:
+def count_adjacent4[T](arr: Grid[T], pos: P2D, targets: Iterable[T]) -> int:
     return sum(arr[y][x] in targets for x, y in adjacent4(pos))
